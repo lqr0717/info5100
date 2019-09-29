@@ -1,0 +1,107 @@
+3. Design a course registration platform
+ Student can
+      1. login
+      2. search course under specific condition
+      3. add course
+      4. drop course
+
+----------------------------------------------------------------------------
+Class: Student
+Data: studentId, studentName, selectCourse, studentCampus, studentTerm, creditMax
+
+Behaviour: loginPlatform(){
+	platform.login(studentId);
+}
+
+Behaviour: searchCourses(searchCondition){
+	List <Course> courses = Platform.searchCourse(searchCondition);
+	// display all courses based on the given condition
+}
+
+Behaviour: addCourse(){
+	registerStatement = Platform.addCourse(courseId);
+}
+
+Behaviour: dropCourse(course){
+	Platform.dropCourse(course);
+
+}
+----------------------------------------------------------------------------
+Class: Course
+Data: courseId, subject, subjectNum, campus, credit, title, day, time, 
+      capacity, active, remaining, waitlistCap, waitlistAct, waitlistRem, instructor, date, location
+
+----------------------------------------------------------------------------
+Class: Platform
+Data: status
+
+Behaviour: login(studentId){
+	List <String> idList;
+	// for lop
+	for each(String idStr in idList){
+		if(idStr == studentId){
+			status = true;
+		} 
+			status = false;
+}
+
+Behaviour: searchCourses(searchCondition){
+	// call to fetch all courses and  store in List <Course> courses
+	List <Course> availableCourses
+    List <Course> courses
+	for (i = 0; i < courses.size(); i++){
+		//check if courses is available for the specific term, subject, and subject number
+		if (courses.get(i).term.compareTo(searchCondition.term)
+			&&courses.get(i).subject.compareTo(searchCondition.subject)
+			&&courses.get(i).subjectNum.compareTo(searchCondition.subjectNum){
+				if (courses.get(i).remaining > 0){
+					availableCourses.add(courses.get(i));
+				}
+		}
+	}
+	if !(availableCourses.size()==0){
+		return availableCourses;
+	}else{
+		HelpService.contact();
+	}
+}
+
+
+Behaviour: addCourse(courseId){
+	// add fail due to 	1. Time conflict
+	//					2. Total credit exceed the maximum
+	// fetch all the selected course based on studentId
+	List <Course> selected;
+	// fetch the course object from courseId
+	Course course;
+	// fetch the total credit selected
+	Int totalCredit;
+	for c in selected{
+		totalCredit += c.credit;
+		// compareTo check the time conflict about two courses, return true if time conflict exists, otherwise false
+		if (c.day == course.day) && (c.time.compareTo(course.time)){
+			// time conflict exists
+				break;
+			}
+	if (course.credit + totalCredit) <= studentId.creditMax{
+		selected.add(course);
+	}
+	else{
+		throw new Exception(“Total Credit exceeds Maximum”);
+		break;
+	}
+
+
+Behaviour: dropCourse(courseId){
+	// fetch all the selected course based on studentId
+	List <Course> selected;
+	// fetch the course object from courseId
+	Course course;
+	selected.remove(course)
+}
+----------------------------------------------------------------------------
+Class: HelpService 
+Behaviour: contact(){
+	//contact through email or phone call
+} 
+

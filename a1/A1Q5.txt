@@ -1,0 +1,92 @@
+5. Design a parking lot
+User can 	1. Find a parking
+			2. Park the car.
+			3. Pay the parking fee.
+			4. Leave the parking lot.
+      
+      
+Class: User
+Data: carId, carSize, creditCardDetails, carLocation
+// pre-condition: the size of the car are defined by number from 1 to 4. 
+// Motorbike with size 1, small-size car with size 2, medium-size car with size 3, and the large-size car with size 4.
+
+Behaviour: findParking(){
+	//fetch the carSzie
+	parkingLot.findParking(searchCondition);
+}
+
+Behaviour: parkCar(){
+	parkTicket = parkingLot.parkCar();
+}
+
+Behaviour: leaveAndPay(ticketId){
+	parkingLot.leaving(ticketId);
+}
+
+----------------------------------------------------------------------------
+Class: CreditCardDetails
+State: name, cardNum, cardType, expiryDate
+Behaviour: isCardExpired(){
+	Date today = new Date();
+	if(today.compareTo(expiryDate)==1){
+		return true;
+	}
+	return false;
+}
+----------------------------------------------------------------------------
+Class: parkingSpot
+Data: spotId, spotSize, spotPrice
+
+Behaviour: checkSpotAvailability(spotId){
+	//check the availability of this spot at this moment.
+}
+----------------------------------------------------------------------------
+Class: newTicket
+Data: ticketId, startTime, pricePerHour
+----------------------------------------------------------------------------
+
+Class: parkingLot
+Data: lotId, name, lotLocation, lotSize, ava
+// int ava: available number of Spot
+
+Behaviour: findParking(searchCondition){
+	// fetch all the parking spot and store in list <parkingSpot> spots
+	List <parkingSpot> spots
+	Boolean isAvailable = false
+	for (i = 0; i<spots.size(),i++){
+		currentSpot = spots.get(i);
+		if(checkSpotAvailability(currentSpot.spotId)&&
+			(currentSpot.spotSize >= searchCondition.spotSize){
+		isAvailable = true;
+		}
+	}
+	if isAvailable{
+		return isAvailable;
+	}else{
+	// parking is full
+	}
+}
+
+Behavior: parkCar(){
+  // get a ticket from the machine and store in <newTicket> parkTicket with unique ticketId, 
+  //and current time as startTime.
+	// fetch the parkingLot object
+	parkingLot.ava = parkingLot.ava - 1;
+	return parkTicket;
+}
+
+Behaviour: leaveAndPay(ticketId){
+	//fetch the newTicket object from ticketId
+	newTicket  ticket;
+	//fetch the current time
+	//and get the parking duration and  convert it into a <Double> totalTime
+	 Double parkingFee = ticket.pricePerHour * Math.ceil(totalTime);
+	
+  //charge from the credit card 
+	if(creditCardDetail.isCardExpired()){
+		//display that card is expired.
+	}else{
+		//make a payment
+	}
+	parkingLot.ava = parkingLot.ava + 1;
+}

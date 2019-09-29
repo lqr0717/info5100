@@ -1,0 +1,82 @@
+4. Design a vending machine
+User can
+	1. Select products from vending machine.
+	2. Insert money for purchasing
+	3. Get change from vending machine
+	4. Refund from vending machine
+----------------------------------------------------------------------------
+
+
+
+Class: product
+Data: productId, productPrice, productAmount
+Behaviour: checkAvailability(selectedProduct){
+	if selectedProduct.productAmount >= 1){
+		return true;
+	}
+	return false;
+}
+
+----------------------------------------------------------------------------
+
+Class: User
+
+Behaviour: selectProduct(){
+		controller.selectProduct(selected);
+}
+
+Behaviour: moneyFlow(){
+		String instructionGiven
+		// String displayed
+		if (instructionGiven.equals(“PUT MONEY”)){
+			controller.moneyFlow(moneyInput,productId);
+		}else{
+			controller.refund();
+	}
+}
+Behaviour: refund(){
+	controller.refund();
+}
+----------------------------------------------------------------------------
+
+// Vending Machine Controller
+Class: controller
+
+Data: productList, productPriceList, totalMoney
+
+//productList is a list of pairs, with productId as key, number of product as value.
+//productPriceList is a list of pairs, with productId as key, productPrice as value.
+
+Behaviour: selectProduct(selected){
+	String instructionGiven;
+	// fetch the selected item based on the productId
+  
+	if (controller.productList.getvalue(selected) >= 1){
+		instructionGiven = “PUT MONEY”;
+	}else{
+		instructionGiven = “NOT AVAILABLE”;			}
+}
+
+Behaviour: moneyFlow(moneyInput, productId){
+	// fetch the selected productId
+	Double productPrice = controller.producPricetList.getvalue(productId);
+	Double change;
+	
+	if ((moneyInput >= productPrice)&&
+		(controller.totalMoney>(moneyInput - productPrice))){
+			// return the change to the user
+			change = moneyInput - productPrice;
+			// update the number of selected product and the totalMoney
+		}
+	else{
+		if (moneyInput >= productPrice){
+			instructionGiven = “NOT ENOUGH REFUND”
+		}else{
+			instructionGiven = “NEED MORE MONEY”
+		}
+		controller.refund()
+}
+			
+Behaviour: refund(){
+	// give all the moneyInput back to the user
+}

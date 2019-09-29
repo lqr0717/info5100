@@ -1,0 +1,109 @@
+2. Design a car rental system
+ User can
+      1. Login system
+      2. Search car under specific condition
+      3. Rent a car
+      4. Cancel a rental
+ ----------------------------------------------------------------------------
+Class: User
+Data: userId, pickUpLocation, userLicense, age, insurance, creditCardDetails
+
+Behaviour: loginApp(){
+	App.login(userId)
+}
+Behaviour: searchCar(searchCondition){
+	List <Car> cars = Platform.searchCar(searchCondition);
+	// display all cars based on the given condition
+}
+
+Behaviour: rentCar(){
+	RentalDetails = App.rentCar(carId, startDate, endDate);
+}
+
+Behaviour: cancelRental(bookingId){
+	App.cancelRental(bookingId);
+	
+}
+
+----------------------------------------------------------------------------
+Class: CreditCardDetails
+State: name, cardNum, cardType, expiryDate
+Behaviour: isCardExpired(){
+	Date today = new Date();
+	if(today.compareTo(expiryDate)==1){
+		return true;
+	}
+	return false;
+}
+
+
+----------------------------------------------------------------------------
+Class: Car
+Data: carId, carPlate, location, carPrice, carClass, carCapacity, totalCar
+
+Behaviour: checkAvailability(date){
+			// check availability of one car on specific date
+
+----------------------------------------------------------------------------
+Class: App
+Data: status
+
+Behaviour: login(userId){
+List <String> idList;
+	for each(String idStr in idList){
+		if(idStr == userId){
+			status = true;
+		} 
+			status = false;
+}
+
+Behaviour: searchCar(searchCondition){
+	// fetch all cars info stored in cars list
+	List <Car> availableCars
+	List <Car> cars
+	for (i = 0; i<cars.size(); i++){
+		Boolean isAvailable = true
+		while(searchCondition.startDate.compareTo(searchCondition.endDate)){
+			if(cars.get(i).checkAvailability(searchCondition.startDate)){
+				isAvailable = false;
+				break;
+			}
+			searchCondition.startDate++;
+		}
+	if (isAvailable && cars.get(i).location.compareTo(searchCondition.location)
+		&& cars.get(i).carClass.compareTo(searchCondition.carClass)
+		&& cars.get(i).carCapacity.compareTo(searchCondition.carCapacity)
+		&& cars.get(i).price <= searchCondition.maxPrice
+		&& cars.get(i).price >= searchCondition.minPrice){
+			availableCars.add(cars.get(i));
+		}
+	}
+	return availableCars;
+}
+
+Behaviour: rentCar(carId, startDate, EndDate){
+	//fetch the car object from car
+	Car car;
+	Int numofRent;
+	//fetch the creditCardDetails if saved
+	if (! creditCardDetails.isCardExpired()){
+ 		int price = car.carPrice * numofRent;
+		// make a payment
+		return RentalDetails;
+		and generate rental id
+	}
+	else {
+		//display that card is expired.
+	}
+}
+
+
+Behaviour: cancelRental(bookingId){
+	//fetch user object and fare
+	PaymentService.initiateRefund(userId, price);
+}
+
+----------------------------------------------------------------------------
+
+
+

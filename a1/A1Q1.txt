@@ -1,0 +1,80 @@
+1. Design a traffic controller system for a junction
+// for a traffic light, we assume that the light only have 2 mode, one is red, one in green. 
+//Turn right and go straight are controlled by same light.
+
+Class: Car
+Data: carId 
+-------------------------------------------------------------------------------
+Class: Light
+
+Data: lightId, lightColour, roadId, nextLight, oppositeLight
+
+// lightColour defined as boolean, green colour is true, red colour is false.
+//  set each light changing have fixed time duration as 10 second.
+// lightId list defined as (“S2NE”,“S2W”, ”N2SW”,”N2E”,”W2SE”, ”W2N”,”E2NW”,”E2S”).
+// ex: “S2NE”: means  the light that control the car from south to north, and the car from south to east.
+// ex: “S2W”: means  the light that control the car from south to west.
+// the colour changing sequence following that “S2NE” and  “N2SW” -> “S2W” 
+// and ”N2E” -> ”W2SE” and “E2NW” -> “W2N” and ”E2S” -> “S2NE” and  “N2SW”
+//
+
+Behaviour: checkLight(){
+	// the light is broken return false, otherwise true.
+	return true;//return false;
+}
+-------------------------------------------------------------------------------			
+Class: Road
+Data: roadId, lightId, numberCar
+// roadId defined from list(“N1”,”N2”,”S1”,”S2”,”W1”,”W2”,”E1”,”E2”)
+// Ex: Road N1 has light “N2SW”, N2 has light “N2E”
+
+Behaviour: carInRoad(roadId){
+	// fetch the Road object
+	Road road
+	
+	while(checkLight(road.lightId)){
+		//fetch the Light object based on id
+		Light light;
+		if (light.lightColor){
+			//based on the light duration and the car passing time.
+			road.numberCar —-;
+		}else{
+			road.numberCar ++;
+			}
+	}
+}
+	
+
+-------------------------------------------------------------------------------
+
+
+Class: Controller
+Behaviour: colourChange(){
+	//fetch the current light object, and next light object
+	Light this;
+	Light next = this.nextLight;
+	Light opposite = this.oppositeLight;
+	Light oppositeNext = opposite.nextLIight
+	
+	while(this.checkLight() && next.checkLight() && opposite.checkLight() && oppositeNext.checkLight()){
+		if(this.lightColour){
+			this.lightColour = false;
+			opposite.lightColour = false;
+			next.lightColour = true;
+			oppositeNext.lightColour = true;
+		}else{
+			this.lightColour = true;
+			opposite.lightColour = true;
+			next.lightColour = false;
+			oppositeNext.lightColour = false;
+			}
+		
+		carInRoad(this.roadId);
+		carInRoad(next.roadId);
+		carInRoad(opposite.roadId);
+		carInRoad(oppositeNext.roadId);
+
+	}
+	//some light is broken
+}
+
