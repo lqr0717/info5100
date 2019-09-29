@@ -1,0 +1,19 @@
+Q9. Explain Encapsulation with an example. (Write at least 30-40 words).
+	In encapsulation, we hide the data in a class from other by making all the data private,
+	to make sure that the data cannot be accessed directly which is data hiding.
+	And at the same time, we still have the power to control over the data.
+	For example: we set the all the data in course class to be private 
+	to make sure other class even in the same package will not have the access to change the data stored in a course class.
+	such as we have a new class defined by the following(outside the class Course):
+	
+	Class people{
+	
+		public static void main(String[] args) {
+		Course c = new Course();
+		c.setCourseId(233);
+		}
+	}
+	
+-----------------------------------------------------------------------------------------------------------------------
+
+Q10. What is the difference between Encapsulation and Abstraction
