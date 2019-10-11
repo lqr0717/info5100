@@ -39,4 +39,3 @@ public class Q4andQ5 {
 	 
 	}
 }
-
