@@ -1,0 +1,7 @@
+Explain the difference between final and finally in Java 8.
+
+1. Final is a keyword, but finally is a block.
+
+2. Final is used to prevente. It can make integer constant, and cannot be changed. 
+   It also prevent inheritance, and method overriding.
+   Finally always use with try and catch blocks, and it would be executed after blocks even if an exception is thrown.
