@@ -1,0 +1,7 @@
+II. Write two differences between ArrayList and LinkedList. (Score 1)
+
+  1. Implement difference: ArrayList implemented with the concept of dynamic array.
+                           LinkedList implemented with the concept of doubly linked list.
+                           
+  2. Insertion difference: When we doing insertion with an arrayList, we need to consider resizing the array, shifting the rest of array,
+                           updating  the index of the whole Arraylist, but for the LinkedList, it gonna be much easier.
