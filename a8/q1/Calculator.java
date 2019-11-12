@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Stack;
 
-public class Calculator2 extends JFrame{
+public class Calculator extends JFrame{
 	/**
 	 * 
 	 */
@@ -15,7 +15,7 @@ public class Calculator2 extends JFrame{
     private String operator;
     private String screenInput;
 
-    public Calculator2() {
+    public Calculator() {
         input = "";
         operator = "";
         screenInput = "";
@@ -124,7 +124,7 @@ public class Calculator2 extends JFrame{
     }
 
     public static void main(String[] args) {
-        JFrame f = new Calculator2();
+        JFrame f = new Calculator();
         f.setTitle("Calculator");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setBounds(400, 200, 500, 300);
